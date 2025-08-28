@@ -1,2 +1,0 @@
-# vibemarketing
-with trae
