@@ -1,0 +1,57 @@
+---
+import SEO from '../components/SEO.astro';
+
+export interface Props {
+	title: string;
+	description?: string;
+	keywords?: string;
+	image?: string;
+	type?: 'website' | 'article' | 'product';
+	author?: string;
+	publishedTime?: string;
+	modifiedTime?: string;
+}
+
+const { 
+	title, 
+	description,
+	keywords,
+	image,
+	type,
+	author,
+	publishedTime,
+	modifiedTime
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="generator" content={Astro.generator} />
+		<SEO 
+			title={title}
+			description={description}
+			keywords={keywords}
+			image={image}
+			type={type}
+			author={author}
+			publishedTime={publishedTime}
+			modifiedTime={modifiedTime}
+		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	</head>
+	<body class="font-inter antialiased bg-white text-gray-900">
+		<slot />
+	</body>
+</html>
+
+<style is:global>
+	@import '../styles/global.css';
+	
+	body {
+		font-family: 'Inter', system-ui, sans-serif;
+	}
+</style>

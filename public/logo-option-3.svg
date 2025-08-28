@@ -1,0 +1,34 @@
+<svg width="200" height="60" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 渐变动感风格 - 选项3 -->
+  <defs>
+    <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#ef4444;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#ec4899;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1e293b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#475569;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- 图标部分 -->
+  <g transform="translate(5, 5)">
+    <!-- 动态圆环 -->
+    <circle cx="25" cy="25" r="20" fill="none" stroke="url(#gradient3)" stroke-width="3" opacity="0.2"/>
+    <circle cx="25" cy="25" r="15" fill="none" stroke="url(#gradient3)" stroke-width="2" opacity="0.4"/>
+    <!-- 中心N字母 -->
+    <path d="M18 18 L18 32 M18 18 L32 32 M32 18 L32 32" stroke="url(#gradient3)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- 增长箭头 -->
+    <path d="M35 15 L40 10 L45 15 M40 10 L40 20" stroke="url(#gradient3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
+    <!-- 装饰点 -->
+    <circle cx="12" cy="12" r="2" fill="url(#gradient3)" opacity="0.6"/>
+    <circle cx="38" cy="38" r="1.5" fill="url(#gradient3)" opacity="0.7"/>
+    <circle cx="8" cy="35" r="1" fill="url(#gradient3)" opacity="0.5"/>
+  </g>
+  
+  <!-- 文字部分 -->
+  <text x="60" y="26" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="url(#textGradient)">NextGrowth</text>
+  <text x="60" y="42" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="url(#gradient3)" letter-spacing="0.8px">MARKETING SOLUTIONS</text>
+</svg>

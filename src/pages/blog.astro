@@ -1,0 +1,290 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import BlogSearch from '../components/BlogSearch.astro';
+import { wordpressAPI, formatDate, generateExcerpt, getFeaturedImageUrl } from '../lib/wordpress.ts';
+import type { WordPressPost, WordPressCategory } from '../lib/wordpress.ts';
+
+// 获取博客文章和分类
+let blogPosts: WordPressPost[] = [];
+let categories: WordPressCategory[] = [];
+let error: string | null = null;
+
+try {
+  // 获取最新的博客文章
+  blogPosts = await wordpressAPI.getPosts({
+    per_page: 12,
+    orderby: 'date',
+    order: 'desc'
+  });
+  
+  // 获取分类
+  categories = await wordpressAPI.getCategories({
+    hide_empty: true
+  });
+} catch (err) {
+  console.error('Failed to fetch WordPress data:', err);
+  error = '无法加载博客内容，请稍后再试。';
+  
+  // 使用模拟数据作为后备
+  blogPosts = [
+    {
+      id: 1,
+      title: { rendered: "AI驱动的营销自动化：未来已来" },
+      excerpt: { rendered: "探索人工智能如何革命性地改变营销策略，提升客户体验和转化率。", protected: false },
+      date: "2024-01-15T00:00:00",
+      slug: "ai-marketing-automation",
+      categories: [1],
+      featured_media: 0
+    },
+    {
+      id: 2,
+      title: { rendered: "数据分析在现代营销中的关键作用" },
+      excerpt: { rendered: "了解如何通过数据驱动的洞察来优化营销活动，实现更好的ROI。", protected: false },
+      date: "2024-01-10T00:00:00",
+      slug: "data-analytics-marketing",
+      categories: [2],
+      featured_media: 0
+    },
+    {
+      id: 3,
+      title: { rendered: "个性化营销：如何打造独特的客户体验" },
+      excerpt: { rendered: "深入了解个性化营销策略，学习如何为每个客户创造独特的品牌体验。", protected: false },
+      date: "2024-01-05T00:00:00",
+      slug: "personalized-marketing",
+      categories: [3],
+      featured_media: 0
+    }
+  ] as WordPressPost[];
+  
+  categories = [
+    { id: 1, name: "AI营销", slug: "ai-marketing", count: 5 },
+    { id: 2, name: "数据分析", slug: "data-analytics", count: 3 },
+    { id: 3, name: "个性化", slug: "personalization", count: 4 }
+  ] as WordPressCategory[];
+}
+---
+
+<Layout title="专业博客 - NextGrowth AI营销" description="NextGrowth专业博客，分享最新的AI营销趋势、出海策略、数据分析技巧等专业见解，助力企业成功出海。">
+	<Navigation />
+	
+	<!-- Hero Section -->
+	<section class="bg-gradient-to-br from-blue-50 via-white to-purple-50 section-padding">
+		<div class="container-custom">
+			<div class="text-center max-w-3xl mx-auto">
+				<h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+					专业博客
+				</h1>
+				<p class="text-xl text-gray-600 mb-8">
+					分享最新的AI营销趋势、出海策略和行业洞察，助力您的营销决策
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Search and Filter Section -->
+	<section class="bg-white py-8 border-b">
+		<div class="container-custom">
+			<!-- 搜索功能 -->
+			<div class="mb-8">
+				<BlogSearch />
+			</div>
+			
+			<!-- 分类筛选 -->
+			<div class="flex flex-wrap gap-4 justify-center">
+				<button 
+					class="px-6 py-2 rounded-full transition-colors bg-blue-600 text-white"
+					data-category="全部"
+				>
+					全部
+				</button>
+				{categories.map((category) => (
+					<button 
+						class="px-6 py-2 rounded-full transition-colors bg-gray-100 text-gray-700 hover:bg-gray-200"
+						data-category={category.name}
+					>
+						{category.name} ({category.count})
+					</button>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Blog Posts Grid -->
+	<section class="section-padding bg-gray-50">
+		<div class="container-custom">
+			{error && (
+				<div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-8">
+					<div class="flex items-center">
+						<svg class="w-5 h-5 text-yellow-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+							<path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+						</svg>
+						<p class="text-yellow-800">{error}</p>
+					</div>
+				</div>
+			)}
+
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="blogGrid">
+				{blogPosts.map((post) => (
+					<article class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow blog-post" data-category={categories.find(cat => post.categories.includes(cat.id))?.name || '未分类'}>
+						<div class="aspect-video bg-gradient-to-br from-blue-100 to-purple-100 relative overflow-hidden">
+							{post.featured_media ? (
+								<img 
+									src={getFeaturedImageUrl(post.featured_media) || `https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=250&fit=crop`}
+									alt={post.title.rendered}
+									class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+								/>
+							) : (
+								<div class="w-full h-full flex items-center justify-center">
+									<svg class="w-16 h-16 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
+									</svg>
+								</div>
+							)}
+							<div class="absolute top-4 left-4">
+								{categories.find(cat => post.categories.includes(cat.id)) && (
+									<span class="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium text-gray-800">
+										{categories.find(cat => post.categories.includes(cat.id))?.name || '未分类'}
+									</span>
+								)}
+							</div>
+						</div>
+						<div class="p-6">
+							<div class="flex items-center justify-between mb-3">
+								<span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full">
+									{categories.find(cat => post.categories.includes(cat.id))?.name || '未分类'}
+								</span>
+								<span class="text-gray-500 text-sm">{formatDate(post.date)}</span>
+							</div>
+							<h2 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
+								<a href={`/blog/${post.slug}`} class="hover:text-blue-600 transition-colors">
+									{post.title.rendered}
+								</a>
+							</h2>
+							<p class="text-gray-600 mb-4 line-clamp-3">
+								{generateExcerpt(post.excerpt.rendered, 120)}
+							</p>
+							<div class="flex items-center justify-between pt-4 border-t border-gray-100">
+								<div class="flex items-center">
+									<div class="w-8 h-8 bg-gradient-primary rounded-full flex items-center justify-center mr-3">
+										<span class="text-white text-sm font-medium">
+											NextGrowth
+										</span>
+									</div>
+									<div>
+										<p class="text-sm font-medium text-gray-900">NextGrowth</p>
+										<p class="text-xs text-gray-500">{formatDate(post.date)}</p>
+									</div>
+								</div>
+								<a href={`/blog/${post.slug}`} class="text-blue-600 hover:text-blue-700 font-medium text-sm flex items-center">
+									阅读更多
+									<svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+									</svg>
+								</a>
+							</div>
+						</div>
+					</article>
+				))}
+			</div>
+			
+			<!-- Load More Button -->
+			<div class="text-center mt-12">
+				<button class="btn-secondary">
+					加载更多文章
+					<svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+					</svg>
+				</button>
+			</div>
+		</div>
+	</section>
+
+	<!-- Newsletter Section -->
+	<section class="section-padding bg-gradient-primary">
+		<div class="container-custom text-center">
+			<h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+				订阅我们的专业见解
+			</h2>
+			<p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+				每周获取最新的AI营销趋势、出海策略和行业分析
+			</p>
+			<form class="max-w-md mx-auto flex gap-4" id="newsletterForm">
+				<input 
+					type="email" 
+					placeholder="输入您的邮箱地址" 
+					class="flex-1 px-4 py-3 rounded-lg border-0 focus:ring-2 focus:ring-white focus:ring-opacity-50"
+					required
+				>
+				<button type="submit" class="bg-white hover:bg-gray-100 text-blue-600 px-6 py-3 rounded-lg font-medium transition-colors">
+					订阅
+				</button>
+			</form>
+			<p class="text-blue-100 text-sm mt-4">
+				我们承诺保护您的隐私，不会发送垃圾邮件
+			</p>
+		</div>
+	</section>
+
+	<Footer />
+</Layout>
+
+<style>
+	.line-clamp-2 {
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+	
+	.line-clamp-3 {
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+</style>
+
+<script>
+	// Category filtering
+	document.addEventListener('DOMContentLoaded', function() {
+		const categoryButtons = document.querySelectorAll('[data-category]');
+		const blogPosts = document.querySelectorAll('.blog-post');
+		
+		categoryButtons.forEach(button => {
+			button.addEventListener('click', function() {
+				const selectedCategory = this.dataset.category;
+				
+				// Update active button
+				categoryButtons.forEach(btn => {
+					btn.classList.remove('bg-blue-600', 'text-white');
+					btn.classList.add('bg-gray-100', 'text-gray-700', 'hover:bg-gray-200');
+				});
+				
+				this.classList.remove('bg-gray-100', 'text-gray-700', 'hover:bg-gray-200');
+				this.classList.add('bg-blue-600', 'text-white');
+				
+				// Filter posts
+				blogPosts.forEach(post => {
+					if (selectedCategory === '全部' || post.dataset.category === selectedCategory) {
+						post.style.display = 'block';
+					} else {
+						post.style.display = 'none';
+					}
+				});
+			});
+		});
+		
+		// Newsletter form
+		document.getElementById('newsletterForm')?.addEventListener('submit', function(e) {
+			e.preventDefault();
+			const email = this.querySelector('input[type="email"]').value;
+			
+			if (email) {
+				alert('感谢订阅！我们会定期向您发送最新的营销见解。');
+				this.reset();
+			}
+		});
+	});
+</script>

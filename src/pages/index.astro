@@ -1,16 +1,202 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="NextGrowth - AI驱动的出海营销解决方案" description="专业的AI营销服务，助力中国企业全球化发展。提供数据驱动的营销策略、智能内容创作和精准用户定位。">
+	<Navigation />
+	
+	<!-- Hero Section -->
+	<section class="bg-gradient-to-br from-blue-50 via-white to-purple-50 section-padding">
+		<div class="container-custom">
+			<div class="text-center max-w-4xl mx-auto">
+				<h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+					用<span class="text-gradient">AI智能</span>驱动<br>
+					您的出海营销成功
+				</h1>
+				<p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+					结合前沿人工智能技术与深度市场洞察，为中国企业提供精准、高效的全球化营销解决方案，实现品牌价值最大化。
+				</p>
+				<div class="flex flex-col sm:flex-row gap-4 justify-center">
+					<a href="/contact" class="btn-primary">
+						免费咨询
+						<svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+						</svg>
+					</a>
+					<a href="/services" class="btn-secondary">
+						了解服务
+					</a>
+				</div>
+			</div>
+			
+			<!-- Stats -->
+			<div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+				<div>
+					<div class="text-3xl font-bold text-blue-600 mb-2">500+</div>
+					<div class="text-gray-600">成功案例</div>
+				</div>
+				<div>
+					<div class="text-3xl font-bold text-blue-600 mb-2">95%</div>
+					<div class="text-gray-600">客户满意度</div>
+				</div>
+				<div>
+					<div class="text-3xl font-bold text-blue-600 mb-2">200%</div>
+					<div class="text-gray-600">平均ROI提升</div>
+				</div>
+				<div>
+					<div class="text-3xl font-bold text-blue-600 mb-2">50+</div>
+					<div class="text-gray-600">覆盖国家</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Services Section -->
+	<section class="section-padding bg-white">
+		<div class="container-custom">
+			<div class="text-center mb-16">
+				<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+					核心服务
+				</h2>
+				<p class="text-xl text-gray-600 max-w-2xl mx-auto">
+					基于AI技术的全方位营销服务，助力企业在全球市场脱颖而出
+				</p>
+			</div>
+			
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+				<div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow">
+					<div class="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mb-6">
+						<svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+						</svg>
+					</div>
+					<h3 class="text-xl font-semibold text-gray-900 mb-4">AI数据分析</h3>
+					<p class="text-gray-600 mb-6">运用机器学习算法深度分析市场数据，为您提供精准的用户画像和市场趋势预测。</p>
+					<a href="/services" class="text-blue-600 hover:text-blue-700 font-medium inline-flex items-center">
+						了解更多
+						<svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+						</svg>
+					</a>
+				</div>
+				
+				<div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow">
+					<div class="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mb-6">
+						<svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path>
+						</svg>
+					</div>
+					<h3 class="text-xl font-semibold text-gray-900 mb-4">智能内容营销</h3>
+					<p class="text-gray-600 mb-6">AI驱动的内容创作和优化，确保您的品牌信息在不同文化背景下都能精准传达。</p>
+					<a href="/services" class="text-blue-600 hover:text-blue-700 font-medium inline-flex items-center">
+						了解更多
+						<svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+						</svg>
+					</a>
+				</div>
+				
+				<div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow">
+					<div class="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mb-6">
+						<svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"></path>
+						</svg>
+					</div>
+					<h3 class="text-xl font-semibold text-gray-900 mb-4">全球化策略</h3>
+					<p class="text-gray-600 mb-6">基于大数据的市场进入策略，帮助您的产品和服务在目标市场快速建立影响力。</p>
+					<a href="/services" class="text-blue-600 hover:text-blue-700 font-medium inline-flex items-center">
+						了解更多
+						<svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+						</svg>
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Features Section -->
+	<section class="section-padding bg-gray-50">
+		<div class="container-custom">
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+				<div>
+					<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+						为什么选择NextGrowth？
+					</h2>
+					<div class="space-y-6">
+						<div class="flex items-start space-x-4">
+							<div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+								<svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+								</svg>
+							</div>
+							<div>
+								<h3 class="text-lg font-semibold text-gray-900 mb-2">AI技术领先</h3>
+								<p class="text-gray-600">采用最新的机器学习和自然语言处理技术，确保营销策略的精准性和有效性。</p>
+							</div>
+						</div>
+						
+						<div class="flex items-start space-x-4">
+							<div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+								<svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+								</svg>
+							</div>
+							<div>
+								<h3 class="text-lg font-semibold text-gray-900 mb-2">数据驱动决策</h3>
+								<p class="text-gray-600">基于实时数据分析和市场洞察，为每个决策提供科学依据，最大化投资回报率。</p>
+							</div>
+						</div>
+						
+						<div class="flex items-start space-x-4">
+							<div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+								<svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+								</svg>
+							</div>
+							<div>
+								<h3 class="text-lg font-semibold text-gray-900 mb-2">全球化经验</h3>
+								<p class="text-gray-600">深度了解不同市场的文化差异和消费习惯，确保品牌信息的本土化传达。</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="bg-white rounded-2xl p-8 shadow-lg">
+					<div class="text-center mb-8">
+						<h3 class="text-2xl font-bold text-gray-900 mb-4">立即开始您的出海之旅</h3>
+						<p class="text-gray-600">免费获取专业的市场分析报告和营销策略建议</p>
+					</div>
+					
+					<form class="space-y-4">
+						<div>
+							<input type="text" placeholder="您的姓名" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+						</div>
+						<div>
+							<input type="email" placeholder="邮箱地址" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+						</div>
+						<div>
+							<input type="text" placeholder="公司名称" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+						</div>
+						<div>
+							<select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+								<option>目标市场</option>
+								<option>北美市场</option>
+								<option>欧洲市场</option>
+								<option>东南亚市场</option>
+								<option>其他市场</option>
+							</select>
+						</div>
+						<button type="submit" class="w-full btn-primary">
+							获取免费咨询
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<Footer />
+</Layout>

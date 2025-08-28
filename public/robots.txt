@@ -1,0 +1,40 @@
+User-agent: *
+Allow: /
+
+# 禁止访问管理和私有目录
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_astro/
+Disallow: /node_modules/
+
+# 允许访问重要资源
+Allow: /images/
+Allow: /css/
+Allow: /js/
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.gif$
+Allow: /*.svg$
+Allow: /*.webp$
+
+# 站点地图位置
+Sitemap: https://nextgrowth.com/sitemap.xml
+
+# 爬取延迟（可选）
+Crawl-delay: 1
+
+# 特定搜索引擎优化
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 2

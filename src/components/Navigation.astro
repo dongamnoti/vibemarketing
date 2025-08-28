@@ -1,0 +1,70 @@
+---
+// Navigation component
+---
+
+<nav class="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50">
+	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+		<div class="flex justify-between items-center h-16">
+			<!-- Logo -->
+			<div class="flex-shrink-0">
+				<a href="/" class="flex items-center space-x-2">
+					<img src="/logo-option-4.svg" alt="NextGrowth" class="h-8 w-auto">
+				</a>
+			</div>
+
+			<!-- Desktop Navigation -->
+			<div class="hidden md:block">
+				<div class="ml-10 flex items-baseline space-x-8">
+					<a href="/" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">首页</a>
+					<a href="/about" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">关于我们</a>
+					<a href="/services" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">服务项目</a>
+					<a href="/blog" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">专业博客</a>
+					<a href="/contact" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">联系我们</a>
+				</div>
+			</div>
+
+			<!-- CTA Button -->
+			<div class="hidden md:block">
+				<a href="/contact" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+					开始合作
+				</a>
+			</div>
+
+			<!-- Mobile menu button -->
+			<div class="md:hidden">
+				<button type="button" class="mobile-menu-button bg-gray-100 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
+					<span class="sr-only">打开主菜单</span>
+					<svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+					</svg>
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- Mobile menu -->
+	<div class="mobile-menu hidden md:hidden" id="mobileMenu">
+		<div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
+			<a href="/" class="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium">首页</a>
+			<a href="/about" class="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium">关于我们</a>
+			<a href="/services" class="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium">服务项目</a>
+			<a href="/blog" class="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium">专业博客</a>
+			<a href="/contact" class="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium">联系我们</a>
+			<a href="/contact" class="block px-3 py-2 bg-blue-600 text-white rounded-lg font-medium text-center mt-4">免费咨询</a>
+		</div>
+	</div>
+</nav>
+
+<script>
+	// Mobile menu toggle
+	document.addEventListener('DOMContentLoaded', function() {
+		const mobileMenuButton = document.querySelector('.mobile-menu-button');
+		const mobileMenu = document.querySelector('.mobile-menu');
+
+		if (mobileMenuButton && mobileMenu) {
+			mobileMenuButton.addEventListener('click', function() {
+				mobileMenu.classList.toggle('hidden');
+			});
+		}
+	});
+</script>

@@ -1,0 +1,30 @@
+<svg width="200" height="60" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 专业商务风格 - 选项5 -->
+  <defs>
+    <linearGradient id="gradient5" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1e40af;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3730a3;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- 图标部分 -->
+  <g transform="translate(10, 10)">
+    <!-- 盾牌形状 -->
+    <path d="M20 5 L30 10 L30 25 C30 30 25 35 20 35 C15 35 10 30 10 25 L10 10 Z" fill="url(#gradient5)" opacity="0.1"/>
+    <!-- 内部图表 -->
+    <rect x="14" y="18" width="2" height="8" fill="url(#gradient5)"/>
+    <rect x="17" y="15" width="2" height="11" fill="url(#gradient5)"/>
+    <rect x="20" y="12" width="2" height="14" fill="url(#gradient5)"/>
+    <rect x="23" y="16" width="2" height="10" fill="url(#gradient5)"/>
+    <!-- 增长箭头 -->
+    <path d="M25 14 L28 11 L31 14 M28 11 L28 18" stroke="url(#gradient5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- 装饰边框 -->
+    <path d="M20 5 L30 10 L30 25 C30 30 25 35 20 35 C15 35 10 30 10 25 L10 10 Z" fill="none" stroke="url(#gradient5)" stroke-width="1" opacity="0.3"/>
+  </g>
+  
+  <!-- 文字部分 -->
+  <text x="55" y="24" font-family="'Times New Roman', Times, serif" font-size="19" font-weight="700" fill="#1e40af">NextGrowth</text>
+  <text x="55" y="40" font-family="'Times New Roman', Times, serif" font-size="9" font-weight="400" fill="#64748b" letter-spacing="1.2px">STRATEGIC MARKETING</text>
+  <!-- 装饰线 -->
+  <line x1="55" y1="44" x2="170" y2="44" stroke="#1e40af" stroke-width="0.5" opacity="0.3"/>
+</svg>

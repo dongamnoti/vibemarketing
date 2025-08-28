@@ -1,0 +1,26 @@
+<svg width="200" height="60" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 几何现代风格 - 选项4 -->
+  <defs>
+    <linearGradient id="gradient4" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#059669;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- 图标部分 -->
+  <g transform="translate(8, 8)">
+    <!-- 几何形状组合 -->
+    <rect x="5" y="15" width="12" height="12" rx="2" fill="url(#gradient4)" opacity="0.8" transform="rotate(45 11 21)"/>
+    <rect x="20" y="10" width="8" height="8" rx="1" fill="url(#gradient4)" opacity="0.6" transform="rotate(30 24 14)"/>
+    <rect x="25" y="25" width="10" height="10" rx="1" fill="url(#gradient4)" opacity="0.4" transform="rotate(15 30 30)"/>
+    <!-- 增长三角形 -->
+    <polygon points="15,35 25,25 35,35" fill="none" stroke="url(#gradient4)" stroke-width="2.5" stroke-linejoin="round"/>
+    <!-- 连接线 -->
+    <line x1="11" y1="21" x2="24" y2="14" stroke="url(#gradient4)" stroke-width="1.5" opacity="0.5"/>
+    <line x1="24" y1="14" x2="30" y2="30" stroke="url(#gradient4)" stroke-width="1.5" opacity="0.5"/>
+  </g>
+  
+  <!-- 文字部分 -->
+  <text x="55" y="25" font-family="'Avenir Next', Avenir, sans-serif" font-size="18" font-weight="600" fill="#064e3b">NextGrowth</text>
+  <text x="55" y="41" font-family="'Avenir Next', Avenir, sans-serif" font-size="10" font-weight="500" fill="#059669" letter-spacing="0.6px">DIGITAL INNOVATION</text>
+</svg>
