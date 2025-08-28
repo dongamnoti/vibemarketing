@@ -28,7 +28,7 @@ const {
 } = Astro.props;
 
 // 构建完整的图片URL
-const fullImageUrl = image.startsWith('http') ? image : new URL(image, Astro.url.origin).href;
+const fullImageUrl = image && image.startsWith('http') ? image : new URL(image || '/og-image.jpg', Astro.url.origin).href;
 
 // 构建结构化数据
 const structuredData = {

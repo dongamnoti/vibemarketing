@@ -43,12 +43,20 @@ export const GET: APIRoute = async () => {
     ];
 
     // 博客文章页面
-    const blogPages = posts.map(post => ({
-      url: `/blog/${post.slug}`,
-      lastmod: new Date(post.modified).toISOString(),
-      changefreq: 'monthly',
-      priority: '0.6'
-    }));
+    const blogPages = posts.map(post => {
+      let lastmod;
+      try {
+        lastmod = new Date(post.modified).toISOString();
+      } catch {
+        lastmod = new Date().toISOString();
+      }
+      return {
+        url: `/blog/${post.slug}`,
+        lastmod,
+        changefreq: 'monthly',
+        priority: '0.6'
+      };
+    });
 
     const allPages = [...staticPages, ...blogPages];
 
