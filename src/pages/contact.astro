@@ -28,7 +28,7 @@ import Footer from '../components/Footer.astro';
 				<!-- Contact Form -->
 				<div class="bg-gray-50 rounded-2xl p-8">
 					<h2 class="text-2xl font-bold text-gray-900 mb-6">获取专业咨询</h2>
-					<form class="space-y-6" id="contactForm">
+					<form class="space-y-6" id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
 						<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 							<div>
 								<label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">姓名 *</label>
@@ -235,16 +235,15 @@ import Footer from '../components/Footer.astro';
 </Layout>
 
 <script>
-	// Contact form handling
+	// Contact form handling with Formspree integration
 	document.getElementById('contactForm')?.addEventListener('submit', function(e) {
-		e.preventDefault();
-		
-		// Get form data
+		// Get form data for validation
 		const formData = new FormData(this);
 		const data = Object.fromEntries(formData);
 		
 		// Simple validation
 		if (!data.firstName || !data.company || !data.email || !data.service || !data.message) {
+			e.preventDefault();
 			alert('请填写所有必填字段');
 			return;
 		}
@@ -252,28 +251,37 @@ import Footer from '../components/Footer.astro';
 		// Email validation
 		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 		if (!emailRegex.test(data.email)) {
+			e.preventDefault();
 			alert('请输入有效的邮箱地址');
 			return;
 		}
 		
 		// Privacy checkbox validation
 		if (!data.privacy) {
+			e.preventDefault();
 			alert('请同意隐私政策和服务条款');
 			return;
 		}
 		
-		// Simulate form submission
+		// Show loading state
 		const submitBtn = this.querySelector('button[type="submit"]');
 		const originalText = submitBtn.innerHTML;
 		submitBtn.innerHTML = '提交中...';
 		submitBtn.disabled = true;
 		
-		// Simulate API call
-		setTimeout(() => {
-			alert('感谢您的咨询！我们会在24小时内与您联系。');
-			this.reset();
-			submitBtn.innerHTML = originalText;
-			submitBtn.disabled = false;
-		}, 2000);
+		// Let Formspree handle the actual submission
+		// The form will be submitted normally to Formspree
+		// After submission, Formspree will redirect to a thank you page
+		// or you can handle the response with AJAX if needed
+	});
+	
+	// Handle Formspree response (if using AJAX submission)
+	window.addEventListener('load', function() {
+		const urlParams = new URLSearchParams(window.location.search);
+		if (urlParams.get('success') === 'true') {
+			alert('感谢您的咨询！我们已收到您的留言，会在24小时内与您联系。');
+			// Clear the URL parameters
+			window.history.replaceState({}, document.title, window.location.pathname);
+		}
 	});
 </script>
